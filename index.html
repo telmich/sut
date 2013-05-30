@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>SUT test</title>
+	</head>
+	<body>
+		<h1><a href="http://www.nico.schottelius.org/docs/sut/">Read more about the SUT Proposal</a></h1>
+		<span id="sut_timebox"> js failed to run if you can read this :) </span>
+		
+
+		<script src="sut.js"></script>
+		<script>
+		
+		var text = document.getElementById('sut_timebox');
+		
+		function Update() {
+			window.setTimeout(Update, 50);
+			var now = new Date();
+			
+			text.innerHTML = '<span class="local-time">' + now + '</span>' + '<br />' +
+							 '<span class="utc-time">' + now.toUTCString() + '</span>' +  '<br />' +
+							 '<span class="sut-time">' + now.toSUTString() + '</span>';
+		}
+		
+		Update();
+		</script>
+	</body>
+</html>
