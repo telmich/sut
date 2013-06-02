@@ -28,4 +28,11 @@ To compile on Linux (with build-essential already installed) run:
 gcc sut.c -lm -o sut
 ```
 
-This utility was inspired by http://telmich.github.io/sut/ and built for the purpose of being able to embed SUT in my statusbar on Linux.
+Credits
+-------
+
+This utility was created based on a specification by Nico Schottelius.
+
+The Original Proposal: http://www.nico.schottelius.org/docs/sut/
+
+The Javascript Implementation: http://telmich.github.io/sut/
