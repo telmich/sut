@@ -11,9 +11,12 @@ typedef struct sut {
 
 // turn milliseconds passed today into a SUT object
 void utc_to_sut(int milli, SUT_TIME* cur_sut){
-    cur_sut->hour = (int)floor(milli / 10000000.0);
-    cur_sut->min  = ((int)floor(milli / 100000.0)) % 100;
-    cur_sut->sec  = ((int)floor(milli / 1000.0)) % 100;
+    // convert the number of seconds in UTC to SUT
+    int simple_milli = (int)(milli * (100000.0 / 86400.0));
+    // populate the SUT object
+    cur_sut->hour = (int)floor(simple_milli / 10000000.0);
+    cur_sut->min  = ((int)floor(simple_milli / 100000.0)) % 100;
+    cur_sut->sec  = ((int)floor(simple_milli / 1000.0)) % 100;
     return;
 }
 
@@ -25,12 +28,13 @@ Inputs:
     seconds that have passed today
 */
 int seconds_of_day(struct timeval *sec, struct tm *tim){
-    long int milli_since_epoch = (sec->tv_sec * 1000)+(sec->tv_usec/1000);
-    long int sec_strt_tdy = 1000 * (sec->tv_sec - 
-    	(tim->tm_sec) - 
-    	(tim->tm_min * 60) - 
-    	(tim->tm_hour * 3600));
-    int tdy_mlsec = (int)(milli_since_epoch - sec_strt_tdy);
+    long int milli_since_epoch = (sec->tv_sec * 1000)+((int)(sec->tv_usec/1000.0));
+    long int milli_this_morning = (
+    	(tim->tm_sec) +
+    	(tim->tm_min * 60) + 
+    	((tim->tm_hour) * 3600))*1000
+        + ((int)(sec->tv_usec/1000.0)); // offset of milliseconds
+    int tdy_mlsec = (int)(milli_this_morning);
     return tdy_mlsec;
 }
 
@@ -47,6 +51,9 @@ int main(){
     // extracts the utctime for hours minutes and seconds
 	time(&rawtime);
 	tm_struct = gmtime(&rawtime);
+
+    // printf("%d\n", timeval_struct.tv_sec);
+    // printf("%d:%d:%d\n", tm_struct->tm_hour, tm_struct->tm_min, tm_struct->tm_sec);
 
     // this call gets the number of milliseconds passed today
     int milli = seconds_of_day(&timeval_struct, tm_struct);
