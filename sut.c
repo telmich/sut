@@ -11,10 +11,9 @@ typedef struct sut {
 
 // turn milliseconds passed today into a SUT object
 void utc_to_sut(int milli, SUT_TIME* cur_sut){
-    printf("%d\n", milli);
     cur_sut->hour = (int)floor(milli / 10000000.0);
     cur_sut->min  = ((int)floor(milli / 100000.0)) % 100;
-    cur_sut->sec  = ((int)floor(milli / 100.0)) % 100;
+    cur_sut->sec  = ((int)floor(milli / 1000.0)) % 100;
     return;
 }
 
@@ -55,7 +54,7 @@ int main(){
     utc_to_sut(milli, &sut);
 	
     // print out the current standard universal time
-	printf("%4d-%02d-%02d %d:%02d:%02d\n", 
+	printf("%4d-%02d-%02d %d:%02d:%02d SUT\n", 
         tm_struct->tm_year+1900,
         tm_struct->tm_mon+1,
         tm_struct->tm_mday,
