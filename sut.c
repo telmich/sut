@@ -1,7 +1,7 @@
 /*
 Author: Benjamin Kaiser
 Created: 2013
-Licence: GPL-2.0
+Licence: GPL-3.0
 */
 
 #include <stdio.h>

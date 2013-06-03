@@ -39,4 +39,4 @@ The Javascript Implementation: http://telmich.github.io/sut/
 
 License
 -------
-This is licenced under the GPL-2.0 licence. (Think it should be a different licence? send me a message).
+This is licenced under the GPL-3.0 licence. (Think it should be a different licence? send me a message).
