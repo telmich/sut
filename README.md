@@ -4,28 +4,14 @@ SUT: Simple Universal Time
 This repository contains a C file that prints the current SUT.
 
 
-Running
+Building & Running
 -------
 
-To run SUT.c simply run the executable file called `sut` in the repository directory.
+To run SUT.c simply make the executable file and run it with the following commands.
 
 ```
+make
 ./sut
-```
-
-If it says something like './sut: Permission denied' you will first need to give it permissions like so:
-
-```
-chmod +x sut
-```
-
-Building from Source
---------------------
-
-To compile on Linux (with build-essential already installed) run: 
-
-```
-gcc sut.c -lm -o sut
 ```
 
 Credits
