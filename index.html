@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>SUT - Simple Universal Time Demonstration</title>
+		<style>
+			.title-box, .separator-box, .times-box {
+				display:inline-block;
+			}
+			
+			.title-box { 
+				 text-align: right;
+			}
+			
+			.times-box { 
+				text-align: left;
+			}
+		</style>
+	</head>
+	
+	<body>
+		
+		<h1>SUT - Simple Universal Time Demonstration</h1>
+		
+		<div>
+			<h2>Current time</h2>
+			<div>
+				<div class="title-box">
+					<div>SUT time</div>
+					<div>Local time</div>
+					<div>UTC time</div>
+				</div>
+				<div class="separator-box">
+					<div>:</div>
+					<div>:</div>
+					<div>:</div>
+				</div>
+				<div class="times-box">
+					<div id="sut-time">Javascript failed</div>
+					<div id="local-time">to run</div>
+					<div id="gmt-time">if you can read this</div>
+				</div>
+			</div>
+
+			<h3><a href="http://www.nico.schottelius.org/docs/sut/">Read more about the SUT Proposal</a></h3>
+		</div>
+		
+		<script src="sut.js"></script>
+		
+		<script>
+			var sut_time = document.getElementById('sut-time');
+			var local_time = document.getElementById('local-time');
+			var gmt_time = document.getElementById('gmt-time');
+			
+			function Update() {
+				window.setTimeout(Update, 50);
+				var now = new Date();
+				
+				sut_time.innerHTML = now.toSUTString();
+				local_time.innerHTML = now;
+				gmt_time.innerHTML = now.toUTCString();
+								 
+			}
+			
+			Update();
+		</script>
+		
+		<hr />
+		
+		<!-- Some tests -->
+		
+		<div>
+			<h2>Running some tests for sut.js</h2>
+			<ol id="tests"></ol>
+		</div>
+		
+		<script>
+			var min = (new Date("Thu, 30 May 2013 00:00:00 GMT"));
+			var max = (new Date("Thu, 30 May 2013 23:59:59 GMT"));
+			
+			function test(x, text) { 
+				var lst = document.getElementById('tests');
+				var node=document.createElement("li");
+				var textnode=document.createTextNode(text);
+				node.appendChild(textnode);
+				lst.appendChild(node);
+				node.style.background = x ? "green" : "red";
+			}
+			
+			test(min.getSimpleHours() == 0 , "00:00:00 - sh must be 0");
+			test(min.getSimpleMinutes() == 0 , "00:00:00 - sm must be 0");
+			test(min.getSimpleSeconds() == 0 , "00:00:00 - ss must be 0");
+			test(min.getSimpleMilliseconds() == 0 , "00:00:00 - sms must be 0");
+			
+			test(max.getSimpleHours() == 9 , "23:59:59 - sh must be 9");
+			test(max.getSimpleMinutes() == 99 , "23:59:59 - sm must be 99");
+			test(max.getSimpleSeconds() == 98 , "23:59:59 - ss must be 98");
+			test(Math.abs(max.getSimpleMilliseconds()-0.8425925925985212) < 0.0000001 , "23:59:59 - sms must be close to 0.8425925925985212");
+		</script>
+		
+	</body>
+</html>
