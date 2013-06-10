@@ -1,3 +1,12 @@
+Have a look at
+
+    http://telmich.github.io/sut/
+
+for demonstration and
+
+    http://www.nico.schottelius.org/docs/sut/
+
+for documentation.
 SUT: Simple Universal Time
 ==========================
 
