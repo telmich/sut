@@ -1,37 +1,52 @@
+SUT: Simple Universal Time
+==========================
+
 Have a look at
 
     http://telmich.github.io/sut/
 
-for demonstration and
+for live demonstration and
 
     http://www.nico.schottelius.org/docs/sut/
 
 for documentation.
-SUT: Simple Universal Time
-==========================
-
-This repository contains a C file that prints the current SUT.
 
 
-Building & Running
--------
+Currently SUT has been implemented in the following languages:
 
-To run SUT.c simply make the executable file and run it with the following commands.
+ - C
+ - Javascript
+
+
+C 
+-
+
+The C implementation is provided by Benjamin Kaiser and can
+be found in sut.c.
+
+To create the executable **sut** run it with the following commands:
 
 ```
 make
 ./sut
 ```
 
+This is licenced under the GPL-3.0 licence.
+
+Javascript 
+----------
+The Javascript implementation is provided by 
+Stefanos Kornilios Mitsis Poiitidis and can be found 
+in sut.js.
+
+The Javascript Implementation can be
+seen at http://telmich.github.io/sut/
+
 Credits
 -------
 
-This utility was created based on a specification by Nico Schottelius.
+- Nico Schottelius (original specification)
+- Stefanos Kornilios Mitsis Poiitidis (Javascript implementation)
+- Benjamin Kaiser (C implementation)
 
-The Original Proposal: http://www.nico.schottelius.org/docs/sut/
 
-The Javascript Implementation: http://telmich.github.io/sut/
-
-License
--------
-This is licenced under the GPL-3.0 licence. (Think it should be a different licence? send me a message).
